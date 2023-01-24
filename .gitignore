@@ -140,3 +140,6 @@ Src/sysmem.c
 
 # Ceedling exceptions
 build/
+
+# HTML readme build exception
+*.html
