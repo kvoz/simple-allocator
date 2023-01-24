@@ -23,19 +23,21 @@ Library has some set of unit-tests, based on [Unity](http://www.throwtheswitch.o
 There is always some challenge in running tests on embedded system. Here is main steps for reaching this (applies to Unity, ceedling and STM32CubeIDE):
 
 1. Download `Unity` source framework.
-1. Download and install `Ruby`.
-1. Install `ceedling`.
+2. Download and install `Ruby`.
+3. Install `ceedling`.
 ```
 gem install ceedling
 ```
 On this step it could be one problem: version of `ceedling` doesn't correspond to version of `Ruby`, probably you need to decrease version of `Rubby`.
-1. Generate testing environment in your STM32CubeIDE project with running next command from folder, where your project nests (e.g. your project directory name is `bar` and is located in directory `foo`, then run it from `foo` with argument `bar`):
+
+4. Generate testing environment in your STM32CubeIDE project with running next command from folder, where your project nests (e.g. your project directory name is `bar` and is located in directory `foo`, then run it from `foo` with argument `bar`):
 ```
 ceedling new bar
 ```
 This will make some environment folders and files, they could be placed in `.gitignore` if need.
-1. Place `Unity` sources in your project with your `Src` and `Inc` folder agreements.
-1. Configure `project.yml` with basics:
+
+5. Place `Unity` sources in your project with your `Src` and `Inc` folder agreements.
+6. Configure `project.yml` with basics:
 ```
 # Place here information about paths for sources and headers
 :paths:
@@ -49,26 +51,30 @@ This will make some environment folders and files, they could be placed in `.git
     #- stdout_pretty_tests_report
     - stdout_gtestlike_tests_report	
 ```
-1. Create test cases for some module (e.g with name `myModule`). Run from project folder:
+
+7. Create test cases for some module (e.g with name `myModule`). Run from project folder:
 ```
 ceedling module:create[test_myModule]
 ```
 Prefix `test` needs for `ceedling` to create unit-test source from template.
-1. Implement a lot of tests!
-1. Prepare IDE for running tests:
+
+8. Implement a lot of tests!
+9. Prepare IDE for running tests:
 <p align="middle">
   <img src="readme_img/ext_tools_run.png" width="350" />
   <img src="readme_img/ext_tools_config.png" width="350" /> 
 </p>
-	- In `Location` place path to `ceedling` running script or `.bat` file;
-	- In `Working directory` select your project;
-	- In `Arguments` place for clear all artifacts before building and then run all tests:
-	```
-    clobber verbosity[4]
-    test:all
-	```
-1. Install `C/C++ unit testing support` software within STM32CubeIDE (Eclipse).
-1. Prepare new `Run configuration`, here is example ([for more information](http://www.throwtheswitch.org/eclipse)):
+
+- In `Location` place path to `ceedling` running script or `.bat` file;
+- In `Working directory` select your project;
+- In `Arguments` place for clear all artifacts before building and then run all tests:
+```
+clobber verbosity[4]
+test:all
+```
+
+10. Install `C/C++ unit testing support` software within STM32CubeIDE (Eclipse).
+11. Prepare new `Run configuration`, here is example ([for more information](http://www.throwtheswitch.org/eclipse)):
 <p align="middle">
   <img src="readme_img/run_config_main.png" width="400" />
   <img src="readme_img/run_config_arguments.png" width="400" /> 
